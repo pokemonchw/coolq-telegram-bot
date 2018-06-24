@@ -10,7 +10,7 @@ logger = logging.getLogger("CTB." + __name__)
 logger.debug(__name__ + " loading")
 
 
-@command_listener('recall', 'del', tg_only=True, description='recall a message')
+#@command_listener('recall', 'del', tg_only=True, description='recall a message')
 def recall(tg_group_id: int,
            tg_user: telegram.User,
            tg_message_id: int,

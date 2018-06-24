@@ -102,6 +102,9 @@ class MainProcess(Daemon):
             kwargs=dict(host=HOST, port=PORT),
             daemon=True)
         threaded_server.start()
+        import plugins.EarthMonitorUtils as earthUtils
+        threadB = threading.Thread(target=earthUtils.start,daemon=True)
+        threadB.start()
 
         should_wait = True
         while should_wait:

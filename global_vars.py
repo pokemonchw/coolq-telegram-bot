@@ -6,6 +6,11 @@ dp = None
 tg_bot: telegram.Bot = None
 tg_bot_id: int = None
 command_list = []
+tgMessage = None
+qqMessage = None
+commandSwitch = '\\'
+fanJian = None
+cmdPage = 0
 
 
 def append_command(command: Command):

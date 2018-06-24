@@ -9,7 +9,7 @@ logger = logging.getLogger("CTB." + __name__)
 logger.debug(__name__ + " loading")
 
 
-@command_listener('dice', 'dice', tg_only=True, description='throw a dice')
+#@command_listener('dice', 'dice', tg_only=True, description='throw a dice')
 def dice(tg_group_id: int,
          tg_user: telegram.User,
          tg_message_id: int,
@@ -32,7 +32,7 @@ def dice(tg_group_id: int,
                        tg_user=tg_user)
 
 
-@command_listener('rps', 'rps', tg_only=True, description='rock paper stone')
+#@command_listener('rps', 'rps', tg_only=True, description='rock paper stone')
 def rps(tg_group_id: int,
         tg_user: telegram.User,
         tg_message_id: int,

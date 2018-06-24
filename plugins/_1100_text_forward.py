@@ -680,7 +680,7 @@ def handle_forward(context):
     return ''
 
 
-@command_listener('image link on', 'lnkon', description='enable pic link mode, only available for Air users')
+#@command_listener('启用图片链接', description='启用图片链接')
 def pic_link_on(forward_index: int,
                 tg_group_id: int=None,
                 tg_user: telegram.User=None,
@@ -702,7 +702,7 @@ def pic_link_on(forward_index: int,
                           tg_message_id)
 
 
-@command_listener('image link off', 'lnkoff', description='disable pic link mode, only available for Air users')
+#@command_listener('关闭图片链接', description='关闭图片链接')
 def pic_link_off(forward_index: int,
                  tg_group_id: int=None,
                  tg_user: telegram.User=None,

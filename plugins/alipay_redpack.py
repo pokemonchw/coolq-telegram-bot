@@ -4,7 +4,7 @@ from main.command import command_listener
 from main.utils import send_both_side
 
 
-@command_listener('alipay', 'ali', description="Support Coolq Telegram Bot's work")
+#@command_listener('alipay', 'ali', description="Support Coolq Telegram Bot's work")
 def show_red_pack(forward_index: int,
                   tg_group_id: int=None,
                   tg_user: telegram.User=None,

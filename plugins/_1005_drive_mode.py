@@ -105,7 +105,7 @@ def drive_mode(forward_index: int, mode: bool) -> str:
 
 # forward_index, tg_user=message.from_user, tg_group_id=tg_group_id, tg_message_id=message.id
 
-@command_listener('drive mode on', 'drive', description='enable drive mode')
+@command_listener('中断转发', description='中断TG到QQ的转发')
 def drive_mode_on(forward_index: int,
                   tg_group_id: int = None,
                   tg_user: telegram.User = None,
@@ -124,7 +124,7 @@ def drive_mode_on(forward_index: int,
                           tg_message_id)
 
 
-@command_listener('drive mode off', 'park', description='disable drive mode')
+@command_listener('启动转发', description='启动TG到QQ的转发')
 def drive_mode_off(forward_index: int,
                    tg_group_id: int = None,
                    tg_user: telegram.User = None,

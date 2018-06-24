@@ -27,7 +27,7 @@ global_vars.create_variable('reload_qq_namelist', reload_qq_namelist)
 global_vars.create_variable('reload_all_qq_namelist', reload_all_qq_namelist)
 
 
-@command_listener('update namelist', 'name', description='update namelist for current group')
+#@command_listener('update namelist', 'name', description='update namelist for current group')
 def update_namelist(forward_index: int,
                     tg_group_id: int=None,
                     tg_user: telegram.User=None,

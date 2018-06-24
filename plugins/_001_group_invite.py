@@ -60,7 +60,7 @@ def event_group_request(context):
 
     accept_token = context.get('flag')
 
-    decline_token = '!!' + accept_token
+    decline_token = global_vars.commandSwitch + accept_token
     reply_markup = InlineKeyboardMarkup([[
         InlineKeyboardButton("Accept", callback_data=accept_token),
         InlineKeyboardButton("Decline", callback_data=decline_token),
@@ -92,7 +92,7 @@ def group_request_callback(bot: telegram.Bot,
 
     user_name = get_full_user_name(user)
 
-    if token.startswith('!!'):  # decline
+    if token.startswith(global_vars.commandSwitch):  # decline
         token = token[2:]
         if token not in global_vars.group_requests:
             return

@@ -15,7 +15,7 @@ from main.cq_utils import (cq_download_pic, cq_location_regex, qq_emoji_list,
 
 logger = logging.getLogger("CTB."+__name__)
 
-CQ_IMAGE_ROOT = os.path.join(CQ_ROOT, 'data/image')
+CQ_IMAGE_ROOT = os.path.join(CQ_ROOT, r'data/image')
 
 
 class FileDownloader(threading.Thread):
@@ -54,8 +54,8 @@ def get_full_user_name(user: telegram.User):
         return ''
     name = user.first_name
     if user.last_name:
-        name += ' ' + user.last_name
-    return name
+        name = name + ' ' + user.last_name
+    return '※' + name + '※'
 
 
 def get_forward_from(message: telegram.Message):
@@ -76,7 +76,7 @@ def get_forward_from(message: telegram.Message):
             message_text = message.text
         else:
             message_text = ''
-        right_end = message_text.find('꞉')  # this is not a main ':', its '꞉'
+        right_end = message_text.find('\n')  # this is not a main ':', its '꞉'
         if right_end != -1:  # from qq
             result = message_text[:right_end]
         else:  # self generated command text, etc.
@@ -134,8 +134,8 @@ def get_qq_name(qq_number: int,
     """
     for group_member in global_vars.group_members[forward_index]:
         if group_member['user_id'] == qq_number:
-            return group_member['card'] if group_member.get('card') else group_member['nickname']
-    return str(qq_number)
+            return '※' + group_member['card'] + '※' if group_member.get('card') else '※' + group_member['nickname'] + '※'
+    return '※' + str(qq_number) + '※'
 
 
 def encode_html(encode_string: str) -> (str, bool):
@@ -283,7 +283,7 @@ def send_from_tg_to_qq(forward_index: int,
     else:
         edit_mark = ''
 
-    message_attribute = sender_name + reply_to + forward_from + edit_mark + '꞉ '
+    message_attribute = sender_name + reply_to + forward_from + edit_mark + '\n'
 
     if sender_name:  # insert extra info at beginning
         message.insert(0, {
@@ -504,11 +504,11 @@ def send_from_qq_to_tg(forward_index: int,
             pic = open(image_path, 'rb')
 
             if message_part.get('text'):
-                full_msg = get_qq_name_encoded(qq_user, forward_index) + forward_from + '꞉ ' \
+                full_msg = get_qq_name_encoded(qq_user, forward_index) + forward_from + '\n' \
                     + message_index_attribute + message_part.get('text')
             else:
                 full_msg = get_qq_name_encoded(
-                    qq_user, forward_index) + forward_from + '꞉ ' + message_index_attribute
+                    qq_user, forward_index) + forward_from + '\n' + message_index_attribute
 
             if image_path.lower().endswith('gif'):  # gif pictures send as document
                 _msg: telegram.Message = global_vars.tg_bot.sendDocument(FORWARD_LIST[forward_index]['TG'],
@@ -521,7 +521,7 @@ def send_from_qq_to_tg(forward_index: int,
 
         else:
             if qq_user:
-                full_msg_bold = '<b>' + get_qq_name_encoded(qq_user, forward_index) + '</b>' + forward_from + '꞉ ' + \
+                full_msg_bold = '<b>' + get_qq_name_encoded(qq_user, forward_index) + '</b>' + forward_from + '\n' + \
                                 message_index_attribute +\
                                 message_part.get('text')
             else:
